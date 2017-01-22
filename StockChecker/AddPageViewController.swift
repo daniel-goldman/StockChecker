@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddPageViewController: UIViewController {
 
@@ -24,6 +25,13 @@ class AddPageViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func addStock(_ sender: UIButton) {
+        
+        print("added stock!")
+        
+        closeAddPage(sender)
+    }
+
     @IBAction func getStockTicker(_ sender: UITextField?) {
 
         stock = sender?.text
