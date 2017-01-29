@@ -108,7 +108,8 @@ class DataController {
 		// fetch request associating with entity name
 		let request = NSFetchRequest<NSManagedObject>(entityName: entityName)
 		
-		request.predicate = NSPredicate(format: "stockTicker == %@", stockObjectToDeleteByTicker)
+		// uncomment this to delete the correct stock not just any one!
+		// request.predicate = NSPredicate(format: "stockTicker == %@", stockObjectToDeleteByTicker)
 		
 		var result: [NSManagedObject]?
 		
