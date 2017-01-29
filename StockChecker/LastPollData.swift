@@ -1,5 +1,5 @@
 //
-//  LastPollDataObject.swift
+//  LastPoll.swift
 //  StockChecker
 //
 //  Created by Daniel on 1/21/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class LastPollDataObject {
+class LastPollData {
     
     var timestamp: String!
     var result: String!

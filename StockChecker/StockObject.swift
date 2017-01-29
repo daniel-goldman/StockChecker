@@ -13,13 +13,16 @@ class StockObject {
     var stockTicker: String
     var lowPrice: Float
     var highPrice: Float
-    var lastPoll: LastPollDataObject
+    var lastPollData: LastPollData
 
-    init(stockTicker: String, lowPrice: Float, highPrice: Float, lastPoll: LastPollDataObject) {
+//    init() {
+//        
+//    }
+	
+    init(stockTicker: String, lowPrice: Float, highPrice: Float) {
         self.stockTicker = stockTicker
         self.lowPrice = lowPrice
         self.highPrice = highPrice
-        self.lastPoll = LastPollDataObject(timestamp: nil, result: nil)
+        self.lastPollData = LastPollData(timestamp: nil, result: nil)
     }
-    
 }
