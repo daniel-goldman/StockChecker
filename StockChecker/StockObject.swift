@@ -11,15 +11,15 @@ import Foundation
 class StockObject {
     
     var stockTicker: String?
-    var lowPrice: Float?
-    var highPrice: Float?
+    var lowPrice: String?
+    var highPrice: String?
     var lastPollData = LastPollData()
 
     init() {
         
     }
 	
-    init(stockTicker: String, lowPrice: Float, highPrice: Float) {
+    init(stockTicker: String, lowPrice: String, highPrice: String) {
         self.stockTicker = stockTicker
         self.lowPrice = lowPrice
         self.highPrice = highPrice
