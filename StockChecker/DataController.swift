@@ -79,8 +79,8 @@ class DataController {
 				
 				// perform our update for each attribute
 				stockObject.stockTicker = stockManagedObject.value(forKey: "stockTicker") as! String?
-				stockObject.lowPrice = stockManagedObject.value(forKeyPath: "lowPrice") as! Float?
-				stockObject.highPrice = stockManagedObject.value(forKeyPath: "highPrice") as! Float?
+				stockObject.lowPrice = stockManagedObject.value(forKeyPath: "lowPrice") as! String?
+				stockObject.highPrice = stockManagedObject.value(forKeyPath: "highPrice") as! String?
 				stockObject.lastPollData.result = stockManagedObject.value(forKeyPath: "result") as! String?
 				stockObject.lastPollData.timestamp = stockManagedObject.value(forKeyPath: "timestamp") as! String?
 				
