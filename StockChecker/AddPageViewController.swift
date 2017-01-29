@@ -14,10 +14,7 @@ class AddPageViewController: UIViewController {
     lazy var dataController = DataController()
     
     var stockObject = StockObject()
-    var stock: String?
-    var lowPrice: Float?
-    var highPrice: Float?
-    
+	
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -37,7 +34,7 @@ class AddPageViewController: UIViewController {
         closeAddPage(sender)
     }
 
-    @IBAction func getStockTicker(_ sender: UITextField?) {
+    @IBAction func setStockTicker(_ sender: UITextField?) {
 		
 		if(sender?.text != nil) {
 			stockObject.stockTicker = sender?.text
@@ -47,13 +44,13 @@ class AddPageViewController: UIViewController {
     @IBAction func setLowPrice(_ sender: UITextField?) {
 
 		if(sender?.text != nil) {
-			stockObject.lowPrice = Float((sender?.text)!)
+			stockObject.lowPrice = (sender?.text)!
 		}
     }
     
     @IBAction func setHighPrice(_ sender: UITextField?) {
 		if(sender?.text != nil) {
-			stockObject.highPrice = Float((sender?.text)!)
+			stockObject.highPrice = (sender?.text)!
 		}
     }
 	
