@@ -11,6 +11,9 @@ import CoreData
 
 class AddPageViewController: UIViewController {
 
+    lazy var dataController = DataController()
+    
+    var stockObject = StockObject()
     var stock: String?
     var lowPrice: Float?
     var highPrice: Float?
@@ -29,25 +32,31 @@ class AddPageViewController: UIViewController {
         
         print("added stock!")
         
+        dataController.save(stockObject: stockObject)
+        
         closeAddPage(sender)
     }
 
     @IBAction func getStockTicker(_ sender: UITextField?) {
-
-        stock = sender?.text
+		
+		if(sender?.text != nil) {
+			stockObject.stockTicker = sender?.text
+		}
     }
     
     @IBAction func setLowPrice(_ sender: UITextField?) {
 
-        lowPrice = Float((sender?.text)!)
+		if(sender?.text != nil) {
+			stockObject.lowPrice = Float((sender?.text)!)
+		}
     }
     
     @IBAction func setHighPrice(_ sender: UITextField?) {
-        
-        highPrice = Float((sender?.text)!)
+		if(sender?.text != nil) {
+			stockObject.highPrice = Float((sender?.text)!)
+		}
     }
-    
-    
+	
     /*
     // MARK: - Navigation
 

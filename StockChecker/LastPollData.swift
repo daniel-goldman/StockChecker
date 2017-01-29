@@ -13,6 +13,10 @@ class LastPollData {
     var timestamp: String!
     var result: String!
     
+    init() {
+        
+    }
+    
     init(timestamp: String?, result: String?) {
         
         self.timestamp = timestamp
