@@ -103,7 +103,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet"/>
                                 <connections>
-                                    <action selector="setStockTicker:" destination="GtH-78-DU7" eventType="editingDidEnd" id="vP9-lt-wMl"/>
+                                    <action selector="setStockTicker:" destination="GtH-78-DU7" eventType="editingChanged" id="8gq-vB-WTa"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Low Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HcD-0h-Qdl">
