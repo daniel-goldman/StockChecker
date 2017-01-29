@@ -14,6 +14,8 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
     
     lazy var dataController = DataController()
     
+    var stockObjects: [StockObject]?
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -25,13 +27,13 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
         // dataController.load()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         
         super.viewDidAppear(true)
-        dataController.load() // get the latest data
+        stockObjects = dataController.load() // get the latest data
         
         // now we need to display/update it
-
+        self.tableView.reloadData()
     }
 
     @IBAction func openAddPage(_ sender: UIButton) {
@@ -39,25 +41,33 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
         self.performSegue(withIdentifier: "openAddPage", sender: self)
     }
     
+    // get number of rows to display.  This is the number of stock objects retrieved by the DataController.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         print(dataController.load()?.count)
-        return (dataController.load()?.count)!// your number of cell here
+        
+        return (dataController.load()?.count)!
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "stockObjectView")! as UITableViewCell
+        cell.textLabel?.text = stockObjects?[indexPath.item].stockTicker
+            //+ (stockObjects?[indexPath.item].lowPrice?)! + (stockObjects?[indexPath.item].highPrice?)!
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
         return true
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            // handle delete (by removing the data from your array and updating the tableview)
+
             dataController.delete(stockObjectToDeleteByTicker: "O")
+            self.tableView.reloadData()
         }
     }
 }
