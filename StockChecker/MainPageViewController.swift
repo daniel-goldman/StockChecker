@@ -9,8 +9,6 @@
 import UIKit
 
 class MainPageViewController: UIViewController {
-
-    //@IBOutlet weak var label: UILabel!
     
     override func viewDidLoad() {
         
@@ -22,6 +20,8 @@ class MainPageViewController: UIViewController {
         self.performSegue(withIdentifier: "openAddPage", sender: self)
     }
     
-    //@IBAction func unwindToMainPage(sender: UIStoryboardSegue) { }
+    @IBOutlet weak var tableView: UITableView!
+    
+    
 }
 

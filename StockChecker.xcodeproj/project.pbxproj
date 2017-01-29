@@ -101,10 +101,10 @@
 			children = (
 				658FC6591E341B330014E7CC /* AppDelegate.swift */,
 				6520896F1E3E497600A77DC9 /* DataController.swift */,
-				653166BF1E353C2600E66FC0 /* StockObjectDataModel.xcdatamodeld */,
 				658FC65B1E341B330014E7CC /* MainPageViewController.swift */,
 				65BFC66C1E345CAB00210163 /* AddPageViewController.swift */,
 				658FC65D1E341B330014E7CC /* Main.storyboard */,
+				653166BF1E353C2600E66FC0 /* StockObjectDataModel.xcdatamodeld */,
 				658FC6601E341B330014E7CC /* Assets.xcassets */,
 				658FC6621E341B330014E7CC /* LaunchScreen.storyboard */,
 				658FC6651E341B330014E7CC /* Info.plist */,
