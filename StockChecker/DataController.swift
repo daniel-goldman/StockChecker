@@ -13,7 +13,7 @@ class DataController {
 	
 	let entityName: String = "StockEntity"
 	
-    func save(stockObject: StockObject) {
+    func save(_ stockObject: StockObject) {
         
 		// get our reference to the AppDelegate
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
@@ -87,7 +87,7 @@ class DataController {
 		return stockObjectList
 	}
 	
-	func delete(stockObjectToDeleteByTicker: String) {
+	func delete(_ stockObjectToDeleteByTicker: String) {
 		
 		//1
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
