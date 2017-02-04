@@ -26,10 +26,8 @@ class AddPageViewController: UIViewController {
     }
     
     @IBAction func addStock(_ sender: UIButton) {
-        
-        print("added stock!")
-        
-        dataController.save(stockObject: stockObject)
+		
+        dataController.save(stockObject)
         
         closeAddPage(sender)
     }
