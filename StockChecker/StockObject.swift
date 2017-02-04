@@ -6,11 +6,11 @@
 //  Copyright © 2017 Daniel. All rights reserved.
 //
 
-import Foundation
+import Gloss
 
-class StockObject {
+class StockObject: Decodable {
     
-    var stockTicker: String?
+	var stockTicker: String?
     var lowPrice: String?
     var highPrice: String?
     var lastPollData = LastPollData()
@@ -18,6 +18,11 @@ class StockObject {
     init() {
         
     }
+	
+	// Constructor using Gloss library to get stock ticker name from JSON
+	required init(json: JSON) {
+		self.stockTicker = "LastPrice" <~~ json
+	}
 	
     init(stockTicker: String, lowPrice: String, highPrice: String) {
         self.stockTicker = stockTicker
