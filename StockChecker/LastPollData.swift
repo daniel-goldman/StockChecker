@@ -6,8 +6,6 @@
 //  Copyright © 2017 Daniel. All rights reserved.
 //
 
-import Foundation
-
 class LastPollData {
     
     var timestamp: String!
