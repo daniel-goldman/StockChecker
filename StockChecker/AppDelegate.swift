@@ -16,6 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // Currently set to short time for debugging; change this number for production
+        UIApplication.shared.setMinimumBackgroundFetchInterval(5.0)
+        
         return true
     }
 
@@ -39,6 +43,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        print("fetching...")
+        completionHandler(UIBackgroundFetchResult.newData)
+        
+        let processor = BackgroundBehaviorController()
+        processor.pollServerForJson()
     }
 
     // Core Data stack
