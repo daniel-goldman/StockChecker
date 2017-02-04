@@ -11,10 +11,10 @@ import UIKit
 class MainPageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
-    
+
     lazy var dataController = DataController()
     
-    var stockObjects: [StockObject]?
+    var stockObjects = [StockObject]()
     
     override func viewDidLoad() {
         
@@ -23,14 +23,14 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "stockObjectView")
         tableView.delegate = self
         tableView.dataSource = self
-        
-        // dataController.load()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewDidAppear(true)
-        stockObjects = dataController.load() // get the latest data
+        
+        // get the latest data
+        stockObjects = dataController.load()!
         
         // now we need to display/update it
         self.tableView.reloadData()
@@ -51,13 +51,15 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "stockObjectView")! as UITableViewCell
-        cell.textLabel?.text = stockObjects?[indexPath.item].stockTicker
-            //+ (stockObjects?[indexPath.item].lowPrice?)! + (stockObjects?[indexPath.item].highPrice?)!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StockTableViewCell") as! StockTableViewCell
+        cell.stockTickerLabel.text = stockObjects[indexPath.item].stockTicker
+        cell.lowPriceLabel.text = stockObjects[indexPath.item].lowPrice
+        cell.highPriceLabel.text = stockObjects[indexPath.item].highPrice
         
         return cell
     }
     
+    // enables the cells to be edited (deleted)
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
         return true
@@ -70,5 +72,7 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
             self.tableView.reloadData()
         }
     }
+    
+    
 }
 
