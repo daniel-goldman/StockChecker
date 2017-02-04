@@ -30,20 +30,22 @@ class DataController {
 		let alreadyExists: Bool = checkIfStockAlreadyAdded(stockTicker: stockObject.stockTicker!)!
 		
         let stockManagedObject = NSManagedObject(entity: entity, insertInto: managedContext)
-        
-        // 3
-        stockManagedObject.setValue(stockObject.stockTicker, forKeyPath: "stockTicker")
-		stockManagedObject.setValue(stockObject.lowPrice, forKeyPath: "lowPrice")
-		stockManagedObject.setValue(stockObject.highPrice, forKeyPath: "highPrice")
-
-        // 4
+		
+        //
 		if(!alreadyExists) {
 			do {
+				// set managed object attributes
+				stockManagedObject.setValue(stockObject.stockTicker, forKeyPath: "stockTicker")
+				stockManagedObject.setValue(stockObject.lowPrice, forKeyPath: "lowPrice")
+				stockManagedObject.setValue(stockObject.highPrice, forKeyPath: "highPrice")
+
 				try managedContext.save()
 
 			} catch let error as NSError {
 				print("\nCould not save. \(error), \(error.userInfo)\n")
 			}
+		} else {
+			print("Already exists!")
 		}
     }
 	
@@ -89,7 +91,7 @@ class DataController {
 	
 	func delete(_ stockObjectToDeleteByTicker: String) {
 		
-		//1
+		// get our reference to the AppDelegate
 		guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
 			print("error trying to delete")
 			return
@@ -115,13 +117,8 @@ class DataController {
 		}
 		
 		// delete the first (hopefully EXACTLY one) result in the set.
-		do {
-			try managedContext.delete(result[0])
-			
-		} catch let error as NSError {
-			print("\nResult set did not contain the desired stock object to delete.\(error), \(error.userInfo)\n")
-		}
-		
+		managedContext.delete(result[0])
+
 		// delete from our managed context.
 		do {
 			try managedContext.save()
