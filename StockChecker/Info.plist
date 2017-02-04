@@ -40,5 +40,12 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+
+	<key>NSAppTransportSecurity</key>
+	<dict>
+  		<!--Include to allow http connections-->
+  		<key>NSAllowsArbitraryLoads</key>
+      		<true/>
+	</dict>
 </dict>
 </plist>
