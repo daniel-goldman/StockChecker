@@ -45,8 +45,6 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
     // get number of rows to display.  This is the number of stock objects retrieved by the DataController.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        print(dataController.load()?.count)
-
         return (dataController.load()?.count)!
     }
     
@@ -69,10 +67,12 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
 
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            dataController.delete(stockObjectToDeleteByTicker: stockObjects[indexPath.row].stockTicker!)
             
-            // get the latest data
-            stockObjects = dataController.load()!
+            // delete the stock
+            dataController.delete(stockObjects[indexPath.row].stockTicker!)
+            
+            // remove the corresponding stock from the table
+            stockObjects.remove(at: indexPath.row)
             
             self.tableView.reloadData()
         }
