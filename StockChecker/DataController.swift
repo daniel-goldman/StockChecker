@@ -12,13 +12,6 @@ import CoreData
 class DataController {
 	
 	let entityName: String = "StockEntity"
-	//var appDelegate: AppDelegate?
-	
-//	init() {
-//		guard appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-//			//return nil
-//		}
-//	}
 	
     func save(stockObject: StockObject) {
         
@@ -109,9 +102,9 @@ class DataController {
 		let request = NSFetchRequest<NSManagedObject>(entityName: entityName)
 		
 		// uncomment this to delete the correct stock not just any one!
-		// request.predicate = NSPredicate(format: "stockTicker == %@", stockObjectToDeleteByTicker)
+		request.predicate = NSPredicate(format: "stockTicker == %@", stockObjectToDeleteByTicker)
 		
-		var result: [NSManagedObject]?
+		var result = [NSManagedObject]()
 		
 		// get the managed stock result set to delete.
 		do {
@@ -121,9 +114,9 @@ class DataController {
 			print("\nCould not fetch.\(error), \(error.userInfo)\n")
 		}
 		
-		// delete the first (and hopefully only) result in the set.
+		// delete the first (hopefully EXACTLY one) result in the set.
 		do {
-			try managedContext.delete((result?[0])!)
+			try managedContext.delete(result[0])
 			
 		} catch let error as NSError {
 			print("\nResult set did not contain the desired stock object to delete.\(error), \(error.userInfo)\n")

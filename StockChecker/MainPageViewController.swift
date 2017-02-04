@@ -12,21 +12,22 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
 
     @IBOutlet weak var tableView: UITableView!
 
+    // Instantiate the delegate layer to interact with Core Data
     lazy var dataController = DataController()
     
+    // Deserialized Stock Objects
     var stockObjects = [StockObject]()
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "stockObjectView")
         tableView.delegate = self
         tableView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+
         super.viewDidAppear(true)
         
         // get the latest data
@@ -43,9 +44,9 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
     
     // get number of rows to display.  This is the number of stock objects retrieved by the DataController.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+
         print(dataController.load()?.count)
-        
+
         return (dataController.load()?.count)!
     }
     
@@ -55,7 +56,7 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
         cell.stockTickerLabel.text = stockObjects[indexPath.item].stockTicker
         cell.lowPriceLabel.text = stockObjects[indexPath.item].lowPrice
         cell.highPriceLabel.text = stockObjects[indexPath.item].highPrice
-        
+
         return cell
     }
     
@@ -66,13 +67,15 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.delete) {
 
-            dataController.delete(stockObjectToDeleteByTicker: "O")
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            dataController.delete(stockObjectToDeleteByTicker: stockObjects[indexPath.row].stockTicker!)
+            
+            // get the latest data
+            stockObjects = dataController.load()!
+            
             self.tableView.reloadData()
         }
     }
-    
-    
 }
 
