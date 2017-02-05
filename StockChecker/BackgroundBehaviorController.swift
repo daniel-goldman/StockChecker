@@ -26,7 +26,7 @@ class BackgroundBehaviorController {
         
         for stockObject in stockObjects {
             
-            Alamofire.request(serverUrlAsString + stockObject.stockTicker, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { response in
+            Alamofire.request(serverUrlAsString + stockObject.stockTicker!, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { response in
                 
                 let json = response.result.value as! JSON
                 print("JSON: \(json)")
