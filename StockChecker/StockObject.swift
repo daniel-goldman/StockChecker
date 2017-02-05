@@ -24,6 +24,13 @@ class StockObject: Decodable {
 		self.lastPollData.lastPrice = "LastPrice" <~~ json
 	}
 	
+	// method to set the latest price.  Not ideal, logic should be moved to a separate class in the future.
+	func setPollDataLastPrice(json: JSON) {
+		
+		let lastPriceAsFloat: Float = Decoder.decode(key: "LastPrice")(json)!
+		self.lastPollData.lastPrice = String(lastPriceAsFloat)
+	}
+	
     init(stockTicker: String, lowPrice: String, highPrice: String) {
         self.stockTicker = stockTicker
         self.lowPrice = lowPrice

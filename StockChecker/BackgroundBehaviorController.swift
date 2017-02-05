@@ -21,7 +21,7 @@ class BackgroundBehaviorController {
         stockObjects = dataController.load()!
     }
     
-    // polls the server for the last stock prices and sets the price accordingly in this class's stock objects.
+    // polls the server for the last stock prices and sets each latest price accordingly in this class's stock objects.
     func pollServerForLastStockPrices() {
         
         for stockObject in stockObjects {
@@ -31,8 +31,7 @@ class BackgroundBehaviorController {
                 let json = response.result.value as! JSON
                 print("JSON: \(json)")
                 
-                let stock = StockObject(json: json)
-                print(stock.lastPollData.lastPrice!)
+                stockObject.setPollDataLastPrice(json: json)
             }
         }
     }
