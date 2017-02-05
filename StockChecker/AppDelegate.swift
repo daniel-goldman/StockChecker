@@ -51,7 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         completionHandler(UIBackgroundFetchResult.newData)
         
         let processor = BackgroundBehaviorController()
-        processor.pollServerForJson()
+        // processor.pollServerForJson()
+        processor.pollServerForLastStockPrices()
     }
 
     // Core Data stack
