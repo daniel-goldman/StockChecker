@@ -6,6 +6,7 @@
 //  Copyright © 2017 Daniel. All rights reserved.
 //
 
+import Alamofire
 import Gloss
 
 class BackgroundBehaviorController {
@@ -20,17 +21,19 @@ class BackgroundBehaviorController {
         stockObjects = dataController.load()!
     }
     
-    func pollServerForJson() {
+    // polls the server for the last stock prices and sets the price accordingly in this class's stock objects.
+    func pollServerForLastStockPrices() {
         
         for stockObject in stockObjects {
-
-            let request = URLRequest(url: URL(string: serverUrlAsString + stockObject.stockTicker!)!)
-            let task = URLSession.shared.dataTask(with: request) {data, response, error in
             
-                let jsonResponse = String(data: data!, encoding: String.Encoding.utf8)
-                print(jsonResponse)
+            Alamofire.request(serverUrlAsString + stockObject.stockTicker, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { response in
+                
+                let json = response.result.value as! JSON
+                print("JSON: \(json)")
+                
+                let stock = StockObject(json: json)
+                print(stock.lastPollData.lastPrice!)
             }
-            task.resume()
         }
     }
 }
