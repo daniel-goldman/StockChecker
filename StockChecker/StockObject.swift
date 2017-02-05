@@ -21,7 +21,7 @@ class StockObject: Decodable {
 	
 	// Constructor using Gloss library to get stock ticker name from JSON
 	required init(json: JSON) {
-		self.stockTicker = "LastPrice" <~~ json
+		self.lastPollData.lastPrice = "LastPrice" <~~ json
 	}
 	
     init(stockTicker: String, lowPrice: String, highPrice: String) {
