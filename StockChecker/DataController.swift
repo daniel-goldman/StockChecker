@@ -38,6 +38,8 @@ class DataController {
 				stockManagedObject.setValue(stockObject.stockTicker, forKeyPath: "stockTicker")
 				stockManagedObject.setValue(stockObject.lowPrice, forKeyPath: "lowPrice")
 				stockManagedObject.setValue(stockObject.highPrice, forKeyPath: "highPrice")
+				stockManagedObject.setValue(stockObject.lastPollData.result, forKey: "result")
+				stockManagedObject.setValue(stockObject.lastPollData.timestamp, forKey: "timestamp")
 
 				try managedContext.save()
 
