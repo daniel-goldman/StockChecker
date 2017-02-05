@@ -38,6 +38,7 @@ class DataController {
 				stockManagedObject.setValue(stockObject.stockTicker, forKeyPath: "stockTicker")
 				stockManagedObject.setValue(stockObject.lowPrice, forKeyPath: "lowPrice")
 				stockManagedObject.setValue(stockObject.highPrice, forKeyPath: "highPrice")
+				//stockManagedObject.setValue(stockObject.lastPollData.lastPrice, forKey: "lastPrice")
 				stockManagedObject.setValue(stockObject.lastPollData.result, forKey: "result")
 				stockManagedObject.setValue(stockObject.lastPollData.timestamp, forKey: "timestamp")
 
@@ -78,6 +79,7 @@ class DataController {
 				stockObject.stockTicker = stockManagedObject.value(forKey: "stockTicker") as! String?
 				stockObject.lowPrice = stockManagedObject.value(forKeyPath: "lowPrice") as! String?
 				stockObject.highPrice = stockManagedObject.value(forKeyPath: "highPrice") as! String?
+				//stockObject.lastPollData.lastPrice = stockManagedObject.value(forKeyPath: "lastPrice") as! String?
 				stockObject.lastPollData.result = stockManagedObject.value(forKeyPath: "result") as! String?
 				stockObject.lastPollData.timestamp = stockManagedObject.value(forKeyPath: "timestamp") as! String?
 				

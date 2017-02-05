@@ -32,7 +32,20 @@ class BackgroundBehaviorController {
                 print("JSON: \(json)")
                 
                 stockObject.setPollDataLastPrice(json: json)
+                
+                let lastPrice: Float = Float(stockObject.lastPollData.lastPrice!)!
+                let lowPrice: Float = Float(stockObject.lowPrice!)!
+                let highPrice: Float = Float(stockObject.highPrice!)!
+                
+                if(lastPrice < lowPrice || lastPrice > highPrice) {
+                    
+                    self.alertTheUser()
+                }
             }
         }
+    }
+    
+    func alertTheUser() {
+        
     }
 }
