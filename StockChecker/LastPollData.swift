@@ -8,15 +8,17 @@
 
 class LastPollData {
     
-    var timestamp: String!
-    var result: String!
+    var lastPrice: String?
+    var result: String?
+    var timestamp: String?
     
     init() {
         
     }
     
-    init(timestamp: String?, result: String?) {
+    init(lastPrice: String?, result: String?, timestamp: String?) {
         
+        self.lastPrice = lastPrice
         self.timestamp = timestamp
         self.result = result
     }
