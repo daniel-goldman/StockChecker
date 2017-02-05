@@ -39,13 +39,14 @@ class BackgroundBehaviorController {
                 
                 if(lastPrice < lowPrice || lastPrice > highPrice) {
                     
-                    self.alertTheUser()
+                    self.alertTheUser(stockObject)
                 }
             }
         }
     }
     
-    func alertTheUser() {
+    func alertTheUser(_ stockObject: StockObject) {
+        
         
     }
 }
