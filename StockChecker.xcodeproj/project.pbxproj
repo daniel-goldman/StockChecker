@@ -55,6 +55,7 @@
 		65BFC6681E34510B00210163 /* StockObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockObject.swift; sourceTree = "<group>"; usesTabs = 1; };
 		65BFC66A1E34553600210163 /* LastPollData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastPollData.swift; sourceTree = "<group>"; };
 		65BFC66C1E345CAB00210163 /* AddPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPageViewController.swift; sourceTree = "<group>"; usesTabs = 1; };
+		65EE1A3F1E47A01E000A9CA1 /* StockChecker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StockChecker.entitlements; sourceTree = "<group>"; };
 		766DF9868A5AFBA15024629F /* Pods-StockCheckerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockCheckerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StockCheckerTests/Pods-StockCheckerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A7E97F3D3EC9E31D9DA96B0A /* Pods_StockChecker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StockChecker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D51E2756271403F3FD606BA0 /* Pods-StockChecker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockChecker.release.xcconfig"; path = "Pods/Target Support Files/Pods-StockChecker/Pods-StockChecker.release.xcconfig"; sourceTree = "<group>"; };
@@ -116,6 +117,7 @@
 		658FC6581E341B330014E7CC /* StockChecker */ = {
 			isa = PBXGroup;
 			children = (
+				65EE1A3F1E47A01E000A9CA1 /* StockChecker.entitlements */,
 				658FC6591E341B330014E7CC /* AppDelegate.swift */,
 				6510EEF71E46D98700ADC1CC /* BackgroundBehaviorController.swift */,
 				6520896F1E3E497600A77DC9 /* DataController.swift */,
@@ -209,9 +211,13 @@
 				TargetAttributes = {
 					658FC6551E341B330014E7CC = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 2M5T52FXP9;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -508,10 +514,13 @@
 			baseConfigurationReference = F51DD6142FD544A7E4B19A7F /* Pods-StockChecker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = StockChecker/StockChecker.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2M5T52FXP9;
 				INFOPLIST_FILE = StockChecker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.daniel.StockChecker;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.daniel-goldman.StockChecker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -522,10 +531,13 @@
 			baseConfigurationReference = D51E2756271403F3FD606BA0 /* Pods-StockChecker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = StockChecker/StockChecker.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 2M5T52FXP9;
 				INFOPLIST_FILE = StockChecker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.daniel.StockChecker;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.daniel-goldman.StockChecker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

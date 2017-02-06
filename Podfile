@@ -7,7 +7,7 @@ target 'StockChecker' do
 
   # Pods for StockChecker
   pod 'Alamofire'
-  pod 'Gloss'
+  pod 'SwiftyJSON'
 
   target 'StockCheckerTests' do
     inherit! :search_paths

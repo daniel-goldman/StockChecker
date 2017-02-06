@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,9 +19,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Currently set to short time for debugging; change this number for production
-        UIApplication.shared.setMinimumBackgroundFetchInterval(5.0)
+        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        
+        // Request user permission for notifications
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.requestAuthorization(options:[.alert, .sound]) { (granted, error) in
+            // Enable or disable features based on authorization.
+            
+        }
+        application.registerForRemoteNotifications()
         
         return true
+    }
+    
+    func application(_ application: UIApplication, didReceive notification: UNNotificationRequest) {
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -47,13 +60,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        print("fetching...")
-        completionHandler(UIBackgroundFetchResult.newData)
-        
-        let processor = BackgroundBehaviorController()
-        processor.pollServerForLastStockPrices()
+        print("performFetchWithCompletionHandler called")
+        let backgroundProcessor = BackgroundBehaviorController()
+        backgroundProcessor.pollServerForLastStockPrices(completionHandler)
     }
-
+    
     // Core Data stack
     lazy var persistentContainer: NSPersistentContainer = {
         /*
