@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreData
-import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,22 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        // Currently set to short time for debugging; change this number for production
+        // Currently set to short time for debugging; change this for production
         application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         
-        // Request user permission for notifications
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.requestAuthorization(options:[.alert, .sound]) { (granted, error) in
-            // Enable or disable features based on authorization.
-            
-        }
-        application.registerForRemoteNotifications()
+        let notificationController = NotificationController()
         
+        notificationController.requestAuth()
+                
         return true
-    }
-    
-    func application(_ application: UIApplication, didReceive notification: UNNotificationRequest) {
-        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

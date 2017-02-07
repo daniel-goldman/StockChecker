@@ -23,6 +23,7 @@
 		65BFC6691E34510B00210163 /* StockObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BFC6681E34510B00210163 /* StockObject.swift */; };
 		65BFC66B1E34553600210163 /* LastPollData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BFC66A1E34553600210163 /* LastPollData.swift */; };
 		65BFC66D1E345CAB00210163 /* AddPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BFC66C1E345CAB00210163 /* AddPageViewController.swift */; };
+		65D51CD11E49557900691F67 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D51CD01E49557900691F67 /* NotificationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		65BFC6681E34510B00210163 /* StockObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockObject.swift; sourceTree = "<group>"; usesTabs = 1; };
 		65BFC66A1E34553600210163 /* LastPollData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastPollData.swift; sourceTree = "<group>"; };
 		65BFC66C1E345CAB00210163 /* AddPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPageViewController.swift; sourceTree = "<group>"; usesTabs = 1; };
+		65D51CD01E49557900691F67 /* NotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		65EE1A3F1E47A01E000A9CA1 /* StockChecker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StockChecker.entitlements; sourceTree = "<group>"; };
 		766DF9868A5AFBA15024629F /* Pods-StockCheckerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StockCheckerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StockCheckerTests/Pods-StockCheckerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A7E97F3D3EC9E31D9DA96B0A /* Pods_StockChecker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StockChecker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +123,7 @@
 				658FC6591E341B330014E7CC /* AppDelegate.swift */,
 				6510EEF71E46D98700ADC1CC /* BackgroundBehaviorController.swift */,
 				6520896F1E3E497600A77DC9 /* DataController.swift */,
+				65D51CD01E49557900691F67 /* NotificationController.swift */,
 				658FC65B1E341B330014E7CC /* MainPageViewController.swift */,
 				65BFC66C1E345CAB00210163 /* AddPageViewController.swift */,
 				658FC65D1E341B330014E7CC /* Main.storyboard */,
@@ -366,6 +369,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65D51CD11E49557900691F67 /* NotificationController.swift in Sources */,
 				652089701E3E497600A77DC9 /* DataController.swift in Sources */,
 				658FC65C1E341B330014E7CC /* MainPageViewController.swift in Sources */,
 				658A2B6B1E4554780067AC41 /* StockTableViewCell.swift in Sources */,
