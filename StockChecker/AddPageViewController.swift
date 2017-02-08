@@ -11,12 +11,15 @@ import UIKit
 class AddPageViewController: UIViewController {
 
     lazy var dataController = DataController()
-    
+	lazy var alertController = UIAlertController(title: "Alert", message: nil, preferredStyle: .alert)
+	lazy var action = UIAlertAction(title: "OK", style: .default, handler: nil)
+
     var stockObject = StockObject()
 	
     override func viewDidLoad() {
         
         super.viewDidLoad()
+		alertController.addAction(action)
     }
     
     @IBAction func closeAddPage(_ sender: UIButton) {
@@ -28,13 +31,21 @@ class AddPageViewController: UIViewController {
 		
 		if(stockObject.stockTicker == nil || (stockObject.stockTicker?.isEmpty)!) {
 			
-			let alertController = UIAlertController(title: "Alert", message: "Stock cannot be empty!", preferredStyle: .alert)
+			alertController.message = "Stock field cannot be empty"
+			self.present(alertController, animated: true, completion: nil)
+		}
+		else if(stockObject.lowPrice == nil || (stockObject.lowPrice?.isEmpty)!) {
+			alertController.message = "\"Low price\" cannot be empty"
+			self.present(alertController, animated: true, completion: nil)
+		}
+		else if(stockObject.highPrice == nil || (stockObject.highPrice?.isEmpty)!) {
+			alertController.message = "\"High price\" cannot be empty"
 			self.present(alertController, animated: true, completion: nil)
 		}
 		else {
 			dataController.save(stockObject)
+			closeAddPage(sender)
 		}
-        closeAddPage(sender)
     }
 
     @IBAction func setStockTicker(_ sender: UITextField?) {
