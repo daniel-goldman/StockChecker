@@ -26,8 +26,14 @@ class AddPageViewController: UIViewController {
     
     @IBAction func addStock(_ sender: UIButton) {
 		
-        dataController.save(stockObject)
-        
+		if(stockObject.stockTicker == nil || (stockObject.stockTicker?.isEmpty)!) {
+			
+			let alertController = UIAlertController(title: "Alert", message: "Stock cannot be empty!", preferredStyle: .alert)
+			self.present(alertController, animated: true, completion: nil)
+		}
+		else {
+			dataController.save(stockObject)
+		}
         closeAddPage(sender)
     }
 
