@@ -13,10 +13,7 @@ class StockTableViewCell: UITableViewCell {
     @IBOutlet weak var stockTickerLabel: UILabel!
     @IBOutlet weak var lowPriceLabel: UILabel!
     @IBOutlet weak var highPriceLabel: UILabel!
-    
-    var stockTicker = ""
-    var lowPrice: String = ""
-    var highPrice: String = ""
+    @IBOutlet weak var lastPriceLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,5 +25,4 @@ class StockTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }
