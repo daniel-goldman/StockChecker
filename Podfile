@@ -7,6 +7,8 @@ target 'StockChecker' do
 
   # Pods for StockChecker
   pod 'Alamofire'
+  pod 'PromiseKit/Alamofire'
+  pod 'SwiftDate'
   pod 'SwiftyJSON'
 
   target 'StockCheckerTests' do
