@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class MainPageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -42,6 +44,11 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
         self.performSegue(withIdentifier: "openAddPage", sender: self)
     }
     
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//        self.performSegue(withIdentifier: "showStockDetails", sender: self)
+//    }
+    
     // get number of rows to display.  This is the number of stock objects retrieved by the DataController.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
@@ -52,6 +59,25 @@ class MainPageViewController: UIViewController, UITableViewDelegate, UITableView
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "StockTableViewCell") as! StockTableViewCell
         cell.stockTickerLabel.text = stockObjects[indexPath.item].stockTicker
+        
+        // Async call to get and set the latest stock price
+        Alamofire.request("http://dev.markitondemand.com/MODApis/Api/v2/Quote/json?symbol=" + cell.stockTickerLabel.text!, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { response in
+            
+            let json = JSON(response.result.value!)
+
+            cell.lastPriceLabel.text = json["LastPrice"].stringValue
+            
+            // Add one to poll count and save to Core Data.
+            let d : [StockObject]? = self.dataController.load()
+            for stockObject in d! {
+                if(stockObject.stockTicker == cell.stockTickerLabel.text) {
+                    stockObject.pollCountSinceCreated = String(Int(stockObject.pollCountSinceCreated)! + 1)
+                    self.dataController.update(stockObject)
+                    break;
+                }
+            }
+        }
+        
         cell.lowPriceLabel.text = stockObjects[indexPath.item].lowPrice
         cell.highPriceLabel.text = stockObjects[indexPath.item].highPrice
 
