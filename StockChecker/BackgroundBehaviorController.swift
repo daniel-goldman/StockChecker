@@ -8,6 +8,7 @@
 
 import Alamofire
 import SwiftyJSON
+import SwiftDate
 
 class BackgroundBehaviorController {
     
@@ -31,6 +32,7 @@ class BackgroundBehaviorController {
     }
     
     // Polls the server for each latest stock price and sets each latest price accordingly in this class's stock objects.
+    // Saves the last results to Core Data.
     func pollServerForLastStockPrices(_ completionHandler: ((UIBackgroundFetchResult) -> Void)!) {
         
         if(stockObjects.count == 0) {
@@ -46,8 +48,13 @@ class BackgroundBehaviorController {
             alamoFireManager.request(serverUrlAsString + stockObject.stockTicker!, method: HTTPMethod.get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { response in
                 
                 let json = JSON(response.result.value!)
+                
                 // set this stock's last price
                 stockObject.lastPollData.lastPrice = json["LastPrice"].stringValue
+                stockObject.lastPollData.timestamp = DateInRegion(absoluteDate: Date.init()).string()
+                stockObject.lastPollData.result = response.result.description
+                
+                self.dataController.update(stockObject)
                 
                 let lastPrice: Float = Float(stockObject.lastPollData.lastPrice!)!
                 let lowPrice: Float = Float(stockObject.lowPrice!)!
